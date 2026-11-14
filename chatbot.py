@@ -116,10 +116,16 @@ def add_contact(args, book):
   message = "Contact updated."
   if record is None:
     record = Record(name)
-    book.add_record(record)
-    message = "Contact added."
+    is_new = True
+  else:
+    is_new = False
+
   if phone:
     record.add_phone(phone)
+
+  if is_new:
+    book.add_record(record)
+
   return message
 
 
